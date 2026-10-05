@@ -3,1468 +3,488 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | DevOps & Cloud Engineer</title>
+  <title>Bhavya Bagra | DevOps & Cloud Portfolio</title>
   
-  <!-- Google Fonts: Editorial Serif + Clean Sans + Monospace -->
+  <!-- Fonts: Editorial Serif + Clean Sans + Monospace -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome Icons -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
     :root {
-      --bg-cream: #FAF7F2;
+      --bg-cream: #FBF9F5;
       --bg-card: #FFFFFF;
-      --bg-subtle: #F2ECE1;
-      --border-soft: rgba(220, 212, 198, 0.8);
-      --border-hover: #C8BEAC;
-      
       --text-primary: #1C1917;
       --text-secondary: #57534E;
-      --text-muted: #8F887C;
-      
       --accent-terracotta: #C85A32;
-      --accent-terracotta-soft: rgba(200, 90, 50, 0.12);
       --accent-sage: #5A7156;
-      --accent-sage-soft: rgba(90, 113, 86, 0.12);
-      --accent-slate: #3B4B59;
+      --border-soft: rgba(220, 212, 198, 0.8);
       
-      --shadow-sm: 0 2px 6px rgba(44, 38, 30, 0.04);
-      --shadow-md: 0 10px 28px rgba(44, 38, 30, 0.06);
-      --shadow-lg: 0 20px 48px rgba(44, 38, 30, 0.08);
-      
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 24px;
-      --radius-full: 9999px;
-      
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Instrument Serif', serif;
       --font-mono: 'Fira Code', monospace;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       background-color: var(--bg-cream);
       color: var(--text-primary);
       font-family: var(--font-sans);
-      line-height: 1.6;
-      position: relative;
       overflow-x: hidden;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient Animated Grain & Soft Mesh Gradient */
-    .ambient-bg {
+    /* =========================================
+       1. LINUX BOOT SCREEN ANIMATION (UNIQUE)
+    ========================================= */
+    #boot-screen {
       position: fixed;
       inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(200, 90, 50, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 90% 70%, rgba(90, 113, 86, 0.05) 0%, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(59, 75, 89, 0.03) 0%, transparent 50%);
-    }
-
-    /* Floating Ambient Canvas for Soft Floating Circles */
-    #ambientCanvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.6;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 7px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-cream);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #D8CEBD;
-      border-radius: var(--radius-full);
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #BCB09D;
-    }
-
-    /* Global Container */
-    .container {
-      width: 90%;
-      max-width: 1140px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* ---------------------------------
-       Floating Glassmorphic Navbar
-    --------------------------------- */
-    header {
-      position: sticky;
-      top: 24px;
-      z-index: 100;
-      margin-bottom: 40px;
-    }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--border-soft);
-      padding: 10px 18px 10px 24px;
-      border-radius: var(--radius-full);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .navbar:hover {
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-md);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-primary);
-    }
-
-    .brand-indicator {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22C55E;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
-      animation: pulse 2.2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.15); opacity: 0.7; }
-    }
-
-    .brand-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      list-style: none;
-    }
-
-    .nav-link {
-      padding: 8px 16px;
-      font-size: 0.86rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      border-radius: var(--radius-full);
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
-
-    .nav-link:hover, .nav-link.active {
-      color: var(--text-primary);
-      background: var(--bg-subtle);
-    }
-
-    .nav-cta {
-      background: var(--text-primary);
-      color: var(--bg-cream) !important;
-      padding: 9px 20px;
-      border-radius: var(--radius-full);
+      background: #111;
+      color: #4ADE80;
+      font-family: var(--font-mono);
       font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .nav-cta:hover {
-      background: var(--accent-terracotta);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(200, 90, 50, 0.25);
-    }
-
-    /* ---------------------------------
-       Page Transitions (SPA Views)
-    --------------------------------- */
-    .view-section {
-      display: none;
-      animation: fadeInView 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      padding-bottom: 80px;
-    }
-
-    .view-section.active {
-      display: block;
-    }
-
-    @keyframes fadeInView {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ---------------------------------
-       Hero Layout & Elements
-    --------------------------------- */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 48px;
-      align-items: center;
-      min-height: calc(80vh - 120px);
-    }
-
-    .pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--accent-terracotta);
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .pill-badge i {
-      font-size: 0.75rem;
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(3rem, 6vw, 4.8rem);
-      line-height: 1.05;
-      font-weight: 400;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      color: var(--text-primary);
-    }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent-terracotta);
-      font-weight: 400;
-    }
-
-    .hero-description {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin-bottom: 36px;
-      line-height: 1.7;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* Stylish Tactile Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 26px;
-      font-size: 0.92rem;
-      font-weight: 600;
-      border-radius: var(--radius-full);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-cream);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-terracotta);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(200, 90, 50, 0.25);
-    }
-
-    .btn-secondary {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-subtle);
-      border-color: var(--border-hover);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* ---------------------------------
-       Aesthetic Photo Card & Uploader
-    --------------------------------- */
-    .photo-stage {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-
-    .photo-card {
-      position: relative;
-      width: 100%;
-      max-width: 380px;
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      border: 1px solid var(--border-soft);
-      box-shadow: var(--shadow-lg);
-      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .photo-card:hover {
-      transform: translateY(-6px) rotate(0.5deg);
-    }
-
-    .photo-frame {
-      position: relative;
-      width: 100%;
-      height: 420px;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--bg-subtle);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-
-    .photo-card:hover .photo-frame img {
-      transform: scale(1.03);
-    }
-
-    /* Uploader Hover Floating Control */
-    .photo-uploader-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(28, 25, 23, 0.45);
-      backdrop-filter: blur(4px);
+      padding: 20px;
+      z-index: 9999;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      cursor: pointer;
-      color: #FFFFFF;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .photo-frame:hover .photo-uploader-overlay {
-      opacity: 1;
-    }
-
-    .photo-uploader-overlay i {
-      font-size: 1.8rem;
-      background: rgba(255, 255, 255, 0.25);
-      width: 52px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-    }
-
-    .photo-uploader-overlay span {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    .photo-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 8px 4px 8px;
-    }
-
-    .meta-user h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .meta-user p {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .meta-status {
-      display: inline-flex;
-      align-items: center;
       gap: 6px;
-      background: var(--accent-sage-soft);
-      color: var(--accent-sage);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      font-size: 0.74rem;
-      font-weight: 700;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    .boot-line {
+      opacity: 0;
+      animation: typeLine 0.1s forwards;
+    }
+    @keyframes typeLine {
+      to { opacity: 1; }
     }
 
-    /* Floating Status Pill over Card */
-    .floating-card-badge {
-      position: absolute;
-      top: -14px;
-      left: 24px;
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      box-shadow: var(--shadow-md);
-      font-size: 0.78rem;
-      font-weight: 600;
+    /* =========================================
+       2. AESTHETIC UI & ANIMATIONS
+    ========================================= */
+    #main-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+      display: none;
+    }
+    
+    #main-content.loaded {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      padding: 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
       color: var(--text-primary);
+      text-decoration: none;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 100px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(200, 90, 50, 0.1);
+      color: var(--accent-terracotta);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero h1 em { color: var(--accent-sage); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 90%;
+    }
+
+    /* Unique Feature: Interactive CI/CD Pipeline */
+    .pipeline-simulator {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .pipeline-simulator::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--accent-terracotta), var(--accent-sage));
+    }
+    .pipeline-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .pipeline-nodes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin-bottom: 30px;
+    }
+    .pipeline-line {
+      position: absolute;
+      top: 50%; left: 0; right: 0;
+      height: 2px;
+      background: var(--border-soft);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+    .pipeline-progress {
+      position: absolute;
+      top: 50%; left: 0; width: 0%;
+      height: 2px;
+      background: var(--accent-sage);
+      z-index: 2;
+      transform: translateY(-50%);
+      transition: width 0.5s linear;
+    }
+    .node {
+      position: relative;
+      z-index: 3;
+      width: 45px; height: 45px;
+      background: var(--bg-cream);
+      border: 2px solid var(--border-soft);
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    /* ---------------------------------
-       Section Headers
-    --------------------------------- */
-    .section-header {
-      margin-bottom: 40px;
-      max-width: 650px;
-    }
-
-    .section-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      font-weight: 400;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-    }
-
-    .section-header p {
+      justify-content: center;
+      font-size: 1.2rem;
       color: var(--text-secondary);
-      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .node.active {
+      border-color: var(--accent-sage);
+      background: var(--accent-sage);
+      color: white;
+      box-shadow: 0 0 15px rgba(90, 113, 86, 0.4);
+      transform: scale(1.1);
+    }
+    .node-label {
+      position: absolute;
+      top: 55px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+    .btn-run {
+      background: var(--text-primary);
+      color: var(--bg-cream);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .btn-run:hover {
+      background: var(--accent-terracotta);
+      transform: translateY(-2px);
     }
 
-    /* ---------------------------------
-       Bento Grid Projects Section
-    --------------------------------- */
+    /* Bento Grid for Resume Details */
     .bento-grid {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding-bottom: 100px;
     }
-
     .bento-card {
       background: var(--bg-card);
       border: 1px solid var(--border-soft);
-      border-radius: var(--radius-md);
       padding: 30px;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
+      border-radius: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .bento-card:hover {
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      border-color: #C8BEAC;
     }
-
-    .col-7 { grid-column: span 7; }
-    .col-5 { grid-column: span 5; }
-    .col-4 { grid-column: span 4; }
-    .col-6 { grid-column: span 6; }
-    .col-12 { grid-column: span 12; }
-
-    .card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
-      padding: 4px 10px;
-      border-radius: var(--radius-sm);
-      width: fit-content;
-    }
-
-    .tag-terracotta {
-      background: var(--accent-terracotta-soft);
-      color: var(--accent-terracotta);
-    }
-
-    .tag-sage {
-      background: var(--accent-sage-soft);
-      color: var(--accent-sage);
-    }
-
-    .tag-slate {
-      background: rgba(59, 75, 89, 0.1);
-      color: var(--accent-slate);
-    }
-
     .bento-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-      color: var(--text-primary);
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
-
     .bento-card p {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      line-height: 1.65;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
+    .span-2 { grid-column: span 2; }
+    
     .tech-pill {
-      font-size: 0.76rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid var(--border-soft);
-      padding-top: 16px;
-      margin-top: auto;
-    }
-
-    .card-footer a {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: gap 0.2s ease, color 0.2s ease;
-    }
-
-    .card-footer a:hover {
-      color: var(--accent-terracotta);
-      gap: 10px;
-    }
-
-    /* ---------------------------------
-       About & Competencies Section
-    --------------------------------- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .about-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-md);
-      padding: 36px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
+      display: inline-block;
+      padding: 6px 12px;
       background: var(--bg-cream);
       border: 1px solid var(--border-soft);
-      border-radius: var(--radius-sm);
-    }
-
-    .skill-item i {
-      font-size: 1.1rem;
-      color: var(--accent-terracotta);
-      width: 20px;
-      text-align: center;
-    }
-
-    .skill-item span {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    /* ---------------------------------
-       Interactive Terminal CLI
-    --------------------------------- */
-    .terminal-container {
-      background: #191716;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18);
-      border: 1px solid #332F2C;
+      border-radius: 50px;
+      font-size: 0.75rem;
       font-family: var(--font-mono);
-      color: #E6E1DC;
+      margin: 4px;
     }
 
-    .terminal-header {
-      background: #252220;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #332F2C;
-    }
-
-    .terminal-dots {
-      display: flex;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
-    .dot-red { background: #FF5F56; }
-    .dot-yellow { background: #FFBD2E; }
-    .dot-green { background: #27C93F; }
-
-    .terminal-title {
-      font-size: 0.78rem;
-      color: #A6A099;
-      font-weight: 500;
-    }
-
-    .terminal-body {
-      padding: 24px;
-      min-height: 380px;
-      max-height: 480px;
-      overflow-y: auto;
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-
-    .terminal-output {
-      margin-bottom: 16px;
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
-
-    .terminal-output .highlight {
-      color: #FBBF24;
-    }
-
-    .terminal-output .success {
-      color: #4ADE80;
-    }
-
-    .terminal-output .muted {
-      color: #8C847A;
-    }
-
-    .terminal-input-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .prompt {
-      color: #C85A32;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    .terminal-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #FFFFFF;
-      font-family: var(--font-mono);
-      font-size: 0.88rem;
-    }
-
-    /* ---------------------------------
-       Contact Form View
-    --------------------------------- */
-    .contact-wrapper {
-      max-width: 680px;
-      margin: 0 auto;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-lg);
-      padding: 44px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .form-group {
-      margin-bottom: 22px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .form-input {
-      width: 100%;
-      background: var(--bg-cream);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-family: var(--font-sans);
-      font-size: 0.92rem;
-      color: var(--text-primary);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .form-input:focus {
-      border-color: var(--accent-terracotta);
-      box-shadow: 0 0 0 3px var(--accent-terracotta-soft);
-      background: #FFFFFF;
-    }
-
-    textarea.form-input {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    /* ---------------------------------
-       Footer
-    --------------------------------- */
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 36px 0;
-      text-align: center;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* ---------------------------------
-       Responsive Breakpoints
-    --------------------------------- */
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-      }
-      .hero-description {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .hero-actions {
-        justify-content: center;
-      }
-      .photo-stage {
-        order: -1;
-      }
-      .bento-grid {
-        grid-template-columns: 1fr;
-      }
-      .col-7, .col-5, .col-4, .col-6, .col-12 {
-        grid-column: span 1;
-      }
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-      .nav-links {
-        display: none;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Dynamic Grain & Particle Canvas -->
-  <div class="ambient-bg"></div>
-  <canvas id="ambientCanvas"></canvas>
+  <!-- 1. TERMINAL BOOT SEQUENCE -->
+  <div id="boot-screen"></div>
 
-  <!-- Top Sticky Navigation Bar -->
-  <header>
-    <div class="container">
-      <nav class="navbar">
-        <a href="#home" class="brand" onclick="navigate('home')">
-          <span class="brand-indicator"></span>
-          <span class="brand-title">DevOps // System Architect</span>
-        </a>
+  <!-- 2. MAIN AESTHETIC PORTFOLIO -->
+  <div id="main-content">
+    <header class="container">
+      <a href="#" class="brand">Bhavya Bagra.</a>
+      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">
+        <i class="fa-solid fa-location-dot"></i> Jaipur, Rajasthan
+      </div>
+    </header>
 
-        <ul class="nav-links">
-          <li><span class="nav-link active" data-target="home" onclick="navigate('home')">Home</span></li>
-          <li><span class="nav-link" data-target="projects" onclick="navigate('projects')">Projects</span></li>
-          <li><span class="nav-link" data-target="about" onclick="navigate('about')">About</span></li>
-          <li><span class="nav-link" data-target="terminal" onclick="navigate('terminal')">CLI Terminal</span></li>
-        </ul>
-
-        <a href="#contact" class="nav-cta" onclick="navigate('contact')">
-          <span>Get in Touch</span>
-          <i class="fa-solid fa-arrow-right" style="font-size: 0.75rem; margin-left: 6px;"></i>
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Multi-View SPA Container -->
-  <main class="container">
-
-    <!-- ==================== VIEW 1: HOME ==================== -->
-    <section id="view-home" class="view-section active">
-      <div class="hero-grid">
-        
-        <!-- Hero Left Column: Typography & CTAs -->
-        <div class="hero-text-col">
-          <div class="pill-badge">
-            <i class="fa-solid fa-bolt"></i>
-            <span>Infrastructure as Code & Automated Systems</span>
-          </div>
-
-          <h1 class="hero-title">
-            Engineering resilient <br />
-            <em>cloud pipelines</em> & <br />
-            declarative clusters.
-          </h1>
-
-          <p class="hero-description">
-            Bridging the gap between software development and stable infrastructure operations. Focused on Linux kernel administration, automated multi-tier deployments, and zero-drift cloud environments.
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div>
+          <div class="hero-badge">DevOps & Cloud Intern</div>
+          <h1>Architecting <br><em>automated</em> cloud <br>infrastructure.</h1>
+          <p>
+            Motivated BCA 3rd year student passionate about Linux systems, CI/CD, and containerization. Eager to apply my hands-on training in a real-world DevOps environment.
           </p>
-
-          <div class="hero-actions">
-            <button class="btn btn-primary" onclick="navigate('projects')">
-              <span>View Projects</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-            <button class="btn btn-secondary" onclick="navigate('terminal')">
-              <i class="fa-solid fa-terminal"></i>
-              <span>Launch Terminal</span>
-            </button>
+          <div style="display: flex; gap: 15px; font-family: var(--font-mono); font-size: 0.85rem;">
+            <a href="mailto:noemail@gmail.com" style="color: var(--text-primary); text-decoration: none;"><i class="fa-solid fa-envelope"></i> noemail@gmail.com</a>
+            <span style="color: var(--text-secondary);">|</span>
+            <span style="color: var(--text-primary);"><i class="fa-solid fa-phone"></i> +91-*********</span>
           </div>
         </div>
 
-        <!-- Hero Right Column: Aesthetic Photo Card with Live Uploader -->
-        <div class="photo-stage">
-          <div class="photo-card">
-            
-            <div class="floating-card-badge">
-              <i class="fa-brands fa-redhat" style="color: #CC0000;"></i>
-              <span>RHCSA / RHCE RHEL 9</span>
-            </div>
-
-            <div class="photo-frame" onclick="triggerPhotoUpload()">
-              <!-- Default Image (Can be changed live with the uploader) -->
-              <img id="profileImage" src="bg remove me.jpeg" alt="Profile Picture" />
-              
-              <div class="photo-uploader-overlay">
-                <i class="fa-solid fa-camera"></i>
-                <span>Click to change photo</span>
-                <span style="font-size: 0.72rem; color: #E5E0D8;">Saved directly to your browser</span>
-              </div>
-            </div>
-
-            <!-- Hidden File Input for Image Upload -->
-            <input type="file" id="photoFileInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)" />
-
-            <div class="photo-meta">
-              <div class="meta-user">
-                <h4>System Engineer</h4>
-                <p>DevOps & Cloud Automation</p>
-              </div>
-              <div class="meta-status">
-                <i class="fa-solid fa-circle-check" style="font-size: 0.7rem;"></i>
-                <span>Active Node</span>
-              </div>
-            </div>
-
+        <!-- Unique Interactive Pipeline Simulator -->
+        <div class="pipeline-simulator">
+          <div class="pipeline-title">
+            <span>Interactive Demo</span>
+            <span id="pipeline-status">Status: IDLE</span>
           </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 2: PROJECTS ==================== -->
-    <section id="view-projects" class="view-section">
-      <div class="section-header">
-        <h2>Selected Architectural Deployments</h2>
-        <p>Production-tested Infrastructure as Code (IaC) architectures, automated pipelines, and Linux server hardening recipes.</p>
-      </div>
-
-      <div class="bento-grid">
-        
-        <!-- Bento Item 1: Ansible 3-Tier Cluster (Wide) -->
-        <div class="bento-card col-7">
-          <div>
-            <span class="card-tag tag-terracotta">
-              <i class="fa-solid fa-network-wired"></i> Automation Blueprint
-            </span>
-            <h3>Automated 3-Tier Enterprise Web Cluster</h3>
-            <p>
-              Engineered an automated end-to-end multi-tier cluster using Ansible. Deployed a high-availability HAProxy load balancer distributing requests across multiple Nginx backend instances with dynamic Jinja2 templating, Ansible Vault encrypted credentials, and automated smoke testing.
-            </p>
-            <div class="tech-stack">
-              <span class="tech-pill">Ansible</span>
-              <span class="tech-pill">HAProxy</span>
-              <span class="tech-pill">Nginx</span>
-              <span class="tech-pill">Ansible Vault</span>
-              <span class="tech-pill">RHEL 9</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Zero Configuration Drift</span>
-            <a href="#terminal" onclick="navigate('terminal'); runCLICommand('projects');">
-              <span>View Specs in Terminal</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Bento Item 2: Web Server Engine (Compact) -->
-        <div class="bento-card col-5">
-          <div>
-            <span class="card-tag tag-sage">
-              <i class="fa-solid fa-shield-halved"></i> Security & Performance
-            </span>
-            <h3>Hardened Nginx Reverse Proxy</h3>
-            <p>
-              High-throughput HTTP/2 and HTTP/3 reverse proxy architecture with SSL/TLS termination, automated Certbot certificate rotation, and strict security headers (HSTS, CSP).
-            </p>
-            <div class="tech-stack">
-              <span class="tech-pill">Nginx</span>
-              <span class="tech-pill">TLS 1.3</span>
-              <span class="tech-pill">Certbot</span>
-              <span class="tech-pill">SELinux</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">A+ SSL Labs Score</span>
-            <a href="#terminal" onclick="navigate('terminal'); runCLICommand('cat nginx.conf');">
-              <span>Inspect Config</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Bento Item 3: Container Pipeline -->
-        <div class="bento-card col-6">
-          <div>
-            <span class="card-tag tag-slate">
-              <i class="fa-brands fa-docker"></i> CI/CD Pipeline
-            </span>
-            <h3>Automated Multi-Stage Container CI/CD</h3>
-            <p>
-              Integrated GitHub Actions with Docker and AWS EC2. Automated code linting, vulnerability scanning with Trivy, container image building, and continuous delivery deployments.
-            </p>
-            <div class="tech-stack">
-              <span class="tech-pill">GitHub Actions</span>
-              <span class="tech-pill">Docker</span>
-              <span class="tech-pill">AWS EC2</span>
-              <span class="tech-pill">Trivy</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Mean Time To Deploy: &lt; 3m</span>
-            <a href="#terminal" onclick="navigate('terminal'); runCLICommand('skills');">
-              <span>Read Workflow</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Bento Item 4: Telemetry & Monitoring -->
-        <div class="bento-card col-6">
-          <div>
-            <span class="card-tag tag-terracotta">
-              <i class="fa-solid fa-chart-line"></i> Observability
-            </span>
-            <h3>Linux Telemetry & Journald Analytics</h3>
-            <p>
-              Centralized logging infrastructure analyzing systemd journal logs, kernel metrics, resource consumption, and socket connections for automated alerting.
-            </p>
-            <div class="tech-stack">
-              <span class="tech-pill">systemd</span>
-              <span class="tech-pill">Journald</span>
-              <span class="tech-pill">Prometheus</span>
-              <span class="tech-pill">Grafana</span>
-            </div>
-          </div>
-          <div class="card-footer">
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Real-time Telemetry</span>
-            <a href="#terminal" onclick="navigate('terminal'); runCLICommand('status');">
-              <span>View Metrics</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 3: ABOUT ==================== -->
-    <section id="view-about" class="view-section">
-      <div class="section-header">
-        <h2>Engineering Philosophy & Toolchain</h2>
-        <p>A structured approach to building predictable, scalable, and manageable IT infrastructure.</p>
-      </div>
-
-      <div class="about-grid">
-        
-        <div class="about-card">
-          <h3 style="font-size: 1.3rem; margin-bottom: 16px;">Core Competencies</h3>
-          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">
-            Specializing in Linux administration, Infrastructure as Code, and automated deployment pipelines. Strong believer in declarative server states, minimal attack surfaces, and reproducible workflows.
-          </p>
-
-          <div class="skills-grid">
-            <div class="skill-item">
-              <i class="fa-brands fa-linux"></i>
-              <span>Linux (RHEL / Ubuntu)</span>
-            </div>
-            <div class="skill-item">
-              <i class="fa-solid fa-gears"></i>
-              <span>Ansible & Automation</span>
-            </div>
-            <div class="skill-item">
-              <i class="fa-brands fa-docker"></i>
-              <span>Docker & Containers</span>
-            </div>
-            <div class="skill-item">
-              <i class="fa-solid fa-server"></i>
-              <span>Nginx & HAProxy</span>
-            </div>
-            <div class="skill-item">
-              <i class="fa-brands fa-git-alt"></i>
-              <span>Git & GitHub Actions</span>
-            </div>
-            <div class="skill-item">
-              <i class="fa-solid fa-shield-virus"></i>
-              <span>SELinux & Firewalld</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-card" style="display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 16px;">Certifications & Focus</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
-              Currently aligning enterprise practices with the Red Hat Certified System Administrator (RHCSA EX200) and Red Hat Certified Engineer (RHCE EX294) standards.
-            </p>
-            
-            <div style="background: var(--bg-cream); border: 1px solid var(--border-soft); padding: 18px; border-radius: var(--radius-sm); margin-bottom: 14px;">
-              <h4 style="font-size: 0.95rem; margin-bottom: 4px;">RHCSA EX200 Competency</h4>
-              <p style="font-size: 0.82rem; color: var(--text-secondary);">Storage management (LVM/VDO), systemd services, user policies, and network bonding with nmcli.</p>
-            </div>
-
-            <div style="background: var(--bg-cream); border: 1px solid var(--border-soft); padding: 18px; border-radius: var(--radius-sm);">
-              <h4 style="font-size: 0.95rem; margin-bottom: 4px;">RHCE EX294 Automation</h4>
-              <p style="font-size: 0.82rem; color: var(--text-secondary);">Playbook orchestration, Jinja2 templating, Ansible Vault, and custom Red Hat System Roles.</p>
-            </div>
-          </div>
-
-          <div style="margin-top: 24px;">
-            <button class="btn btn-primary" onclick="navigate('contact')" style="width: 100%; justify-content: center;">
-              <span>Let's Discuss Projects</span>
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== VIEW 4: TERMINAL CLI ==================== -->
-    <section id="view-terminal" class="view-section">
-      <div class="section-header">
-        <h2>Interactive Linux Terminal CLI</h2>
-        <p>Type commands below to interact with this portfolio system in real-time. Try typing <span style="font-family: var(--font-mono); color: var(--accent-terracotta); font-weight: 600;">help</span> to get started.</p>
-      </div>
-
-      <div class="terminal-container">
-        <div class="terminal-header">
-          <div class="terminal-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <div class="terminal-title">guest@devops-cluster:~ (bash)</div>
-          <div style="font-size: 0.75rem; color: #6E675F;">x86_64</div>
-        </div>
-
-        <div class="terminal-body" id="terminalBody">
-          <div class="terminal-output muted">Welcome to the Interactive DevOps Terminal v2.4 LTS.
-Type '<span class="highlight">help</span>' to inspect available system commands.
-────────────────────────────────────────────────────────────────</div>
           
-          <div id="commandHistory"></div>
+          <div class="pipeline-nodes">
+            <div class="pipeline-line"></div>
+            <div class="pipeline-progress" id="pipeline-progress"></div>
+            
+            <div class="node" id="node-1"><i class="fa-brands fa-git-alt"></i><span class="node-label">Source</span></div>
+            <div class="node" id="node-2"><i class="fa-solid fa-hammer"></i><span class="node-label">Build</span></div>
+            <div class="node" id="node-3"><i class="fa-brands fa-docker"></i><span class="node-label">Container</span></div>
+            <div class="node" id="node-4"><i class="fa-brands fa-aws"></i><span class="node-label">Deploy</span></div>
+          </div>
 
-          <div class="terminal-input-row">
-            <span class="prompt">guest@cluster:~$</span>
-            <input type="text" id="cliInput" class="terminal-input" autocomplete="off" spellcheck="false" autofocus />
+          <button class="btn-run" id="btn-run" onclick="runPipeline()">
+            <i class="fa-solid fa-play"></i> Trigger CI/CD Pipeline
+          </button>
+        </div>
+      </section>
+
+      <!-- Bento Grid (Resume Details) -->
+      <section class="bento-grid">
+        
+        <!-- Experience / Training -->
+        <div class="bento-card span-2">
+          <h3>Hands-on Training</h3>
+          <p><strong style="color: var(--text-primary);">Grass Solution, Jaipur Gopalpura</strong> (6 Months)</p>
+          <p>Intensive training in DevOps & Cloud Computing methodologies.</p>
+          <div style="margin-top: 15px;">
+            <span class="tech-pill">Certificate: bcc8da9f21083</span>
+            <span class="tech-pill"><i class="fa-brands fa-linux"></i> Linux</span>
+            <span class="tech-pill"><i class="fa-brands fa-docker"></i> Docker</span>
+            <span class="tech-pill"><i class="fa-solid fa-code-branch"></i> CI/CD</span>
+            <span class="tech-pill"><i class="fa-solid fa-dharmachakra"></i> Kubernetes</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ==================== VIEW 5: CONTACT ==================== -->
-    <section id="view-contact" class="view-section">
-      <div class="section-header" style="text-align: center; margin: 0 auto 36px auto;">
-        <h2>Establish Connection</h2>
-        <p>Have a question or looking to collaborate on cloud infrastructure and DevOps automation?</p>
-      </div>
+        <!-- Education -->
+        <div class="bento-card">
+          <h3>Education</h3>
+          <p><strong style="color: var(--text-primary);">BCA (3rd Year Pursuing)</strong></p>
+          <p>Bachelor of Computer Applications</p>
+          <br>
+          <p><strong style="color: var(--text-primary);">Senior Secondary</strong></p>
+          <p>Rajasthan Board of Education</p>
+        </div>
 
-      <div class="contact-wrapper">
-        <form onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" class="form-input" placeholder="Alex Morgan" required />
+        <!-- Technical Skills -->
+        <div class="bento-card span-2">
+          <h3>Technical Competencies</h3>
+          <p>Foundational knowledge geared towards modern infrastructure operations.</p>
+          <div style="margin-top: 15px;">
+            <span class="tech-pill">OS: Linux (Ubuntu), Windows</span>
+            <span class="tech-pill">VCS: Git & GitHub</span>
+            <span class="tech-pill">Scripting: Bash (Introductory)</span>
+            <span class="tech-pill">Containers: Docker</span>
+            <span class="tech-pill">Cloud: AWS Basics</span>
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" class="form-input" placeholder="alex@company.com" required />
-          </div>
+        <!-- Soft Skills -->
+        <div class="bento-card">
+          <h3>Soft Skills</h3>
+          <ul style="font-size: 0.9rem; color: var(--text-secondary); margin-left: 20px; line-height: 1.8;">
+            <li>Eager to learn & adapt</li>
+            <li>Analytical problem-solving</li>
+            <li>Strong team player</li>
+            <li>Self-motivated</li>
+          </ul>
+        </div>
 
-          <div class="form-group">
-            <label for="message">Project Description</label>
-            <textarea id="message" class="form-input" placeholder="Tell me about your infrastructure goals or open positions..."></textarea>
-          </div>
+      </section>
+    </main>
+  </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>Send Transmission</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Clean Minimalist Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Crafted with minimalist cream aesthetics & modern DevOps standards.</p>
-    </div>
-  </footer>
-
-  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
   <script>
-    /* ---------------------------------
-       1. SPA Navigation Engine
-    --------------------------------- */
-    function navigate(viewName) {
-      // Hide all view sections
-      const views = document.querySelectorAll('.view-section');
-      views.forEach(view => view.classList.remove('active'));
+    /* =========================================
+       1. LINUX BOOT SEQUENCE LOGIC
+    ========================================= */
+    const bootLines = [
+      "[ OK ] Started Show Plymouth Boot Screen.",
+      "[ OK ] Reached target Paths.",
+      "[ OK ] Reached target Basic System.",
+      "Mounting /sys/kernel/debug...",
+      "[ OK ] Started System Logging Service.",
+      "Starting Docker Application Container Engine...",
+      "[ OK ] Started Docker Application Container Engine.",
+      "[ OK ] Reached target Network is Online.",
+      "Starting Bhavya_Portfolio_UI_Server...",
+      "[ OK ] Started Bhavya Portfolio Successfully."
+    ];
 
-      // Remove active class from nav links
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => link.classList.remove('active'));
+    const bootScreen = document.getElementById('boot-screen');
+    const mainContent = document.getElementById('main-content');
+    
+    let delay = 0;
+    
+    // Simulate terminal typing
+    bootLines.forEach((line, index) => {
+      setTimeout(() => {
+        const p = document.createElement('div');
+        p.className = 'boot-line';
+        p.innerText = line;
+        bootScreen.appendChild(p);
+      }, delay);
+      delay += Math.random() * 200 + 100; // random delay between lines
+    });
 
-      // Activate selected view
-      const targetView = document.getElementById(`view-${viewName}`);
-      if (targetView) {
-        targetView.classList.add('active');
-      }
-
-      // Update active nav pill
-      const targetNav = document.querySelector(`.nav-link[data-target="${viewName}"]`);
-      if (targetNav) {
-        targetNav.classList.add('active');
-      }
-
-      // Update URL hash
-      window.location.hash = viewName;
-
-      // Focus terminal input if terminal is activated
-      if (viewName === 'terminal') {
+    // End boot sequence and reveal website
+    setTimeout(() => {
+      bootScreen.style.opacity = '0';
+      setTimeout(() => {
+        bootScreen.style.display = 'none';
+        mainContent.style.display = 'block';
+        // Small delay to allow display:block to apply before adding class for transition
         setTimeout(() => {
-          document.getElementById('cliInput').focus();
-        }, 150);
-      }
+          mainContent.classList.add('loaded');
+        }, 50);
+      }, 800);
+    }, delay + 600);
 
-      // Smooth scroll back to top of container
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
-    // Handle hash on page load
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && document.getElementById(`view-${hash}`)) {
-        navigate(hash);
-      }
-
-      // Load saved photo from localStorage if present
-      const savedPhoto = localStorage.getItem('user_portfolio_photo');
-      if (savedPhoto) {
-        document.getElementById('profileImage').src = savedPhoto;
-      }
-
-      // Initialize Ambient Background Particle Canvas
-      initAmbientCanvas();
-    });
-
-    /* ---------------------------------
-       2. Persistent Photo Uploader
-    --------------------------------- */
-    function triggerPhotoUpload() {
-      document.getElementById('photoFileInput').click();
-    }
-
-    function handlePhotoUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const base64Data = e.target.result;
-        document.getElementById('profileImage').src = base64Data;
-        try {
-          localStorage.setItem('user_portfolio_photo', base64Data);
-        } catch (err) {
-          console.warn('Image too large for localStorage quota. Rendered in session.');
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-
-    /* ---------------------------------
-       3. Interactive Terminal Simulator
-    --------------------------------- */
-    const cliInput = document.getElementById('cliInput');
-    const commandHistory = document.getElementById('commandHistory');
-    const terminalBody = document.getElementById('terminalBody');
-
-    cliInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        const rawCmd = this.value.trim();
-        this.value = '';
-        if (rawCmd) {
-          executeCommand(rawCmd);
-        }
-      }
-    });
-
-    function runCLICommand(command) {
-      executeCommand(command);
-    }
-
-    function executeCommand(cmd) {
-      const cleanCmd = cmd.toLowerCase().trim();
+    /* =========================================
+       2. INTERACTIVE PIPELINE LOGIC
+    ========================================= */
+    let isRunning = false;
+    
+    function runPipeline() {
+      if(isRunning) return;
+      isRunning = true;
       
-      // Append user command
-      const line = document.createElement('div');
-      line.className = 'terminal-output';
-      line.innerHTML = `<span class="prompt">guest@cluster:~$</span> ${cmd}`;
-      commandHistory.appendChild(line);
+      const btn = document.getElementById('btn-run');
+      const status = document.getElementById('pipeline-status');
+      const progress = document.getElementById('pipeline-progress');
+      const nodes = [
+        document.getElementById('node-1'),
+        document.getElementById('node-2'),
+        document.getElementById('node-3'),
+        document.getElementById('node-4')
+      ];
 
-      let response = '';
+      // Reset
+      nodes.forEach(n => n.classList.remove('active'));
+      progress.style.width = '0%';
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Pipeline Running...';
+      btn.style.opacity = '0.7';
 
-      switch (cleanCmd) {
-        case 'help':
-          response = `<span class="highlight">Available commands:</span>
-  • <span class="success">skills</span>        : Displays DevOps, Linux, and Cloud competencies
-  • <span class="success">projects</span>      : Summarizes deployed infrastructure projects
-  • <span class="success">status</span>        : Real-time cluster health and metrics
-  • <span class="success">whoami</span>        : Shows current operator credentials
-  • <span class="success">ansible-ping</span>  : Simulates ad-hoc cluster ping across nodes
-  • <span class="success">cat nginx.conf</span>: Inspects hardened web server configuration
-  • <span class="success">clear</span>         : Clears terminal history`;
-          break;
+      // Stage 1: Source
+      setTimeout(() => {
+        status.innerText = 'Status: Fetching code from Git...';
+        nodes[0].classList.add('active');
+      }, 500);
 
-        case 'skills':
-          response = `<span class="highlight">Competency Matrix:</span>
-[+] Linux Administration : RHEL 9, systemd, nmcli, LVM, SELinux, firewalld
-[+] Automation & IaC     : Ansible Playbooks, Roles, Jinja2, Ansible Vault
-[+] Web Servers          : Nginx (Reverse Proxy, HTTP/3), HAProxy, Apache httpd
-[+] CI/CD & Containers   : Docker, Podman, GitHub Actions, AWS EC2`;
-          break;
+      // Stage 2: Build
+      setTimeout(() => {
+        status.innerText = 'Status: Running Build & Tests...';
+        progress.style.width = '33%';
+        nodes[1].classList.add('active');
+      }, 1500);
 
-        case 'projects':
-          response = `<span class="highlight">Active Projects:</span>
-1. [Ansible-3-Tier-Cluster] ➔ lb01 (HAProxy) + web01/web02 (Nginx) via Jinja2
-2. [Hardened-Nginx-Proxy]   ➔ TLS 1.3, Rate-Limiting, HSTS, Certbot Auto-Renew
-3. [Containerized-CI/CD]    ➔ Multi-stage Docker builds deployed to AWS EC2`;
-          break;
+      // Stage 3: Container
+      setTimeout(() => {
+        status.innerText = 'Status: Building Docker Image...';
+        progress.style.width = '66%';
+        nodes[2].classList.add('active');
+      }, 2500);
 
-        case 'status':
-          response = `<span class="success">SYSTEM OK</span> - All services nominal
-Uptime      : 42 days, 14 hours
-Load Average: 0.12, 0.08, 0.05
-Memory Free : 14.2 GB / 16.0 GB
-Firewall    : Enforcing (UFW/Firewalld active)
-SELinux     : Enforcing`;
-          break;
+      // Stage 4: Deploy
+      setTimeout(() => {
+        status.innerText = 'Status: Deploying to AWS...';
+        progress.style.width = '100%';
+        nodes[3].classList.add('active');
+      }, 3500);
 
-        case 'whoami':
-          response = `Operator: DevOps Specialist & Linux Administrator
-Role    : Infrastructure Automation Engineer
-Focus   : Resilient, scalable cloud systems`;
-          break;
-
-        case 'ansible-ping':
-          response = `<span class="success">lb01 | SUCCESS => {"changed": false, "ping": "pong"}</span>
-<span class="success">web01 | SUCCESS => {"changed": false, "ping": "pong"}</span>
-<span class="success">web02 | SUCCESS => {"changed": false, "ping": "pong"}</span>`;
-          break;
-
-        case 'cat nginx.conf':
-          response = `<span class="muted"># /etc/nginx/conf.d/app.conf</span>
-server {
-    listen 443 ssl http2;
-    server_name cluster.internal;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    add_header X-Frame-Options "DENY";
-    location / {
-        proxy_pass http://backend_pool;
-    }
-}`;
-          break;
-
-        case 'clear':
-          commandHistory.innerHTML = '';
-          return;
-
-        default:
-          response = `<span style="color: #F87171;">bash: command not found: ${cmd}</span>. Type '<span class="highlight">help</span>' for a list of valid commands.`;
-          break;
-      }
-
-      const resElem = document.createElement('div');
-      resElem.className = 'terminal-output';
-      resElem.innerHTML = response;
-      commandHistory.appendChild(resElem);
-
-      terminalBody.scrollTop = terminalBody.scrollHeight;
-    }
-
-    /* ---------------------------------
-       4. Contact Form Simulated Submit
-    --------------------------------- */
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert('Thank you! Your transmission has been queued.');
-      e.target.reset();
-    }
-
-    /* ---------------------------------
-       5. Ambient Canvas Animation (Calm floating particles)
-    --------------------------------- */
-    function initAmbientCanvas() {
-      const canvas = document.getElementById('ambientCanvas');
-      const ctx = canvas.getContext('2d');
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
-
-      window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
-
-      const particles = [];
-      const particleCount = 20;
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 3 + 1.5,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          color: Math.random() > 0.5 ? 'rgba(200, 90, 50, 0.12)' : 'rgba(90, 113, 86, 0.12)'
-        });
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
+      // Finish
+      setTimeout(() => {
+        status.innerText = 'Status: SUCCESS \u2714\ufe0f';
+        status.style.color = 'var(--accent-sage)';
+        btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Run Again';
+        btn.style.opacity = '1';
+        isRunning = false;
+      }, 4500);
     }
   </script>
 </body>
